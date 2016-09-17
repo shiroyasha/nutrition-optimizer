@@ -1,5 +1,11 @@
 class Serving
 
+  def self.all
+    @@all ||= CSV.foreach("servings.csv").drop(1).map do |row|
+      Serving.new(row)
+    end
+  end
+
   FIELDS = [
     :day,
     :name,

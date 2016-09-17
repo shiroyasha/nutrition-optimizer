@@ -1,8 +1,20 @@
 require "csv"
+require "terminal-table"
+require "active_support/all"
 
 require_relative "lib/serving"
-require_relative "lib/parser"
+require_relative "lib/food"
 
-servings = Parser.parse_raw_data("servings.csv")
+serving_counts = Food.sort_by_servings.reverse
+                     .map { |food| [food.name, food.servings.count] }
 
-p servings.sort_by { |s| [s.name, s.energy] }.map(&:name)
+puts Terminal::Table.new :title => "Top 40 foods (times eaten)",
+                         :headings => ["Food", "Count"],
+                         :rows => serving_counts.take(40)
+
+food_by_calories = Food.sort_by_total_energy.reverse
+                       .map { |food| [food.name, food.total_energy] }
+
+puts Terminal::Table.new :title => "Top 40 foods (by calories)",
+                         :headings => ["Food", "Energy"],
+                         :rows => food_by_calories.take(40)
