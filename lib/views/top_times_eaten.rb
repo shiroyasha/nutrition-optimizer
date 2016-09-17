@@ -7,13 +7,18 @@ module Views
         [
           food.name,
           food.servings.count,
-          food.servings.sum(&:energy)
+          food.servings.sum(&:energy).to_i
         ]
       end
 
-      puts Terminal::Table.new :title => "Top 40 foods (times eaten)",
+      table = Terminal::Table.new :title => "Top 40 foods (times eaten)",
                                :headings => ["Food", "Count", "Energy"],
                                :rows => foods.take(40)
+
+      table.align_column(1, :right)
+      table.align_column(2, :right)
+
+      puts table
     end
 
   end
