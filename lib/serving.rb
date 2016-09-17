@@ -75,4 +75,19 @@ class Serving
       instance_variable_set(:"@#{field.to_s}", value || 0)
     end
   end
+
+  def proteins
+    cystine +
+    histidine +
+    isoleucine +
+    leucine +
+    lysine +
+    methionine +
+    phenylalanine +
+    protein +
+    threonine +
+    tryptophan +
+    tyrosine +
+    valine
+  end
 end

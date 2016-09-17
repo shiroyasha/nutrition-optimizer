@@ -9,3 +9,4 @@ Dir["lib/views/*"].each { |f| puts f; require_relative f }
 
 Views::TopTimesEaten.render
 Views::TopCalorieIntake.render
+Views::BestProteinSource.render
