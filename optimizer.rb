@@ -5,5 +5,4 @@ require_relative "lib/parser"
 
 servings = Parser.parse_raw_data("servings.csv")
 
-servings.take(10).each { |s| p s.name }
-
+p servings.sort_by { |s| [s.name, s.energy] }.map(&:name)

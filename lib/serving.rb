@@ -62,6 +62,10 @@ class Serving
 
   def initialize(raw_data)
     FIELDS.zip(raw_data).each do |field, value|
+      unless field == :name
+        value = value.to_f
+      end
+
       instance_variable_set(:"@#{field.to_s}", value || 0)
     end
   end
