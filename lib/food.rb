@@ -24,4 +24,8 @@ class Food
   def total_energy
     @servings.sum(&:energy)
   end
+
+  def total_energy_percentage
+    total_energy / Serving.all.sum(&:energy)
+  end
 end
